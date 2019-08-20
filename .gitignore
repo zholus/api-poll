@@ -8,3 +8,4 @@ bld/
 *.userosscache
 *.sln.docstates
 *.cache
+*.user
