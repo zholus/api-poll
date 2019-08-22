@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Polling.Db;
 using Polling.Extensions;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Polling
 {
@@ -31,6 +32,11 @@ namespace Polling
             services
                 .AddMvc(options => options.Conventions.Insert(0, new ModeRouteConvention()))
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Polling API documentation", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +54,12 @@ namespace Polling
 
             app.UseHttpsRedirection();
             app.UseMvc();
+            
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
         }
     }
 }

@@ -7,6 +7,7 @@ namespace Polling.Controllers
     [Route("")]
     public class WelcomeController : ControllerBase
     {
+        [HttpGet]
         public ActionResult<Dictionary<string, string>> Index()
         {
             return new Dictionary<string, string>
