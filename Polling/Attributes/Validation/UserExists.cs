@@ -3,7 +3,7 @@ using Polling.Repositories;
 
 namespace Polling.Attributes.Validation
 {
-    public class UserExistsAttribute : ValidationAttribute
+    public class UserExists : ValidationAttribute
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
@@ -11,7 +11,7 @@ namespace Polling.Attributes.Validation
 
             var user = userRepository.FindByLogin((string) value);
 
-            return user != null ? new ValidationResult("User already exists") : null;
+            return user == null ? new ValidationResult("User does not exists") : null;
         }
 
         private IUserRepository GetUserRepository(ValidationContext validationContext)

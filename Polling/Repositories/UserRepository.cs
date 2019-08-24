@@ -25,5 +25,12 @@ namespace Polling.Repositories
         {
             return _context.Users.FirstOrDefault(user => user.Login == login);
         }
+
+        public bool Save(User user)
+        {
+            _context.Update(user);
+
+            return _context.SaveChanges() > 0;
+        }
     }
 }

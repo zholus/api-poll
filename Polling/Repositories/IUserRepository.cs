@@ -6,5 +6,6 @@ namespace Polling.Repositories
     {
         bool Add(User user);
         User FindByLogin(string login);
+        bool Save(User user);
     }
 }

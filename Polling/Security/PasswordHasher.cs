@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Identity;
+using Polling.Entities;
 
 namespace Polling.Security
 {
@@ -12,6 +13,11 @@ namespace Polling.Security
         public bool Verify(string plainPassword, string hash)
         {
             return BCrypt.Net.BCrypt.Verify(plainPassword, hash);
+        }
+
+        public bool Verify(string plainPassword, User user)
+        {
+            return Verify(plainPassword, user.Password);
         }
     }
 }
