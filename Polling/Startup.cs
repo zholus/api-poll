@@ -4,8 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Polling.Builders;
 using Polling.Db;
 using Polling.Extensions;
+using Polling.Repositories;
+using Polling.Security;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Polling
@@ -28,6 +31,10 @@ namespace Polling
             });
 
             services.AddScoped<IDbConnectionStatusChecker, DbConnectionStatusChecker>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserBuilder, UserBuilder>();
+            services.AddScoped<IPasswordHasher, PasswordHasher>();
+            services.AddScoped<ITokenGenerator, TokenGenerator>();
             
             services
                 .AddMvc(options => options.Conventions.Insert(0, new ModeRouteConvention()))
