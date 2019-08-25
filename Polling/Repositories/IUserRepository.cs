@@ -2,10 +2,8 @@ using Polling.Entities;
 
 namespace Polling.Repositories
 {
-    public interface IUserRepository
+    public interface IUserRepository : IRepository<User>
     {
-        bool Add(User user);
         User FindByLogin(string login);
-        bool Save(User user);
     }
 }

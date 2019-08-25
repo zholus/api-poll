@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Polling.Builders;
 using Polling.Db;
+using Polling.Db.UoW;
 using Polling.Extensions;
 using Polling.Repositories;
 using Polling.Security;
@@ -31,6 +32,7 @@ namespace Polling
             });
 
             services.AddScoped<IDbConnectionStatusChecker, DbConnectionStatusChecker>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserBuilder, UserBuilder>();
             services.AddScoped<IPasswordHasher, PasswordHasher>();
