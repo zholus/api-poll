@@ -15,5 +15,10 @@ namespace Polling.Repositories
         {
             return FindOne(user => user.Login.Equals(login));
         }
+
+        public User FindByToken(string accessToken)
+        {
+            return FindOne(user => user.AccessToken.Equals(accessToken));
+        }
     }
 }

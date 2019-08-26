@@ -8,6 +8,7 @@ using Polling.Builders;
 using Polling.Db;
 using Polling.Db.UoW;
 using Polling.Extensions;
+using Polling.Providers;
 using Polling.Repositories;
 using Polling.Security;
 using Swashbuckle.AspNetCore.Swagger;
@@ -37,6 +38,7 @@ namespace Polling
             services.AddScoped<IUserBuilder, UserBuilder>();
             services.AddScoped<IPasswordHasher, PasswordHasher>();
             services.AddScoped<ITokenGenerator, TokenGenerator>();
+            services.AddScoped<IUserProvider, UserProvider>();
             
             services
                 .AddMvc(options => options.Conventions.Insert(0, new ModeRouteConvention()))
