@@ -5,7 +5,7 @@ using Polling.Attributes.Validation;
 
 namespace Polling.RequestModels
 {
-    public class NewPollModel
+    public class PollRequestModel
     {
         [Required]
         [UniquePollTitle]
@@ -13,6 +13,6 @@ namespace Polling.RequestModels
         
         [Required]
         [UniqueEnumerableValue("Title")]
-        public IEnumerable<NewQuestion> Questions { get; set; }
+        public IEnumerable<QuestionRequestModel> Questions { get; set; }
     }
 }

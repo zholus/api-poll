@@ -28,11 +28,11 @@ namespace Polling.Controllers
         }
         
         [HttpPost("login")]
-        public ActionResult<IEnumerable<string>> Login([FromForm] LoginModel model)
+        public ActionResult<IEnumerable<string>> Login([FromForm] LoginRequestModel requestModel)
         {
-            var user = _unitOfWork.Users.FindByLogin(model.Login);
+            var user = _unitOfWork.Users.FindByLogin(requestModel.Login);
 
-            if (_passwordHasher.Verify(model.Password, user))
+            if (_passwordHasher.Verify(requestModel.Password, user))
             {
                 user.AccessToken = _tokenGenerator.Generate();
 
@@ -47,9 +47,9 @@ namespace Polling.Controllers
         }
 
         [HttpPost("register")]
-        public IActionResult Register([FromForm] RegisterModel model)
+        public IActionResult Register([FromForm] RegisterRequestModel requestModel)
         {
-            var user = _userBuilder.BuildFrom(model);
+            var user = _userBuilder.BuildFrom(requestModel);
 
             user.AccessToken = _tokenGenerator.Generate();
 

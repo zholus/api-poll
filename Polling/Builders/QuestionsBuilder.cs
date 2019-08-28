@@ -14,7 +14,7 @@ namespace Polling.Builders
             _questionBuilder = questionBuilder;
         }
         
-        public IEnumerable<Question> BuildQuestions(IEnumerable<NewQuestion> questions)
+        public IEnumerable<Question> BuildQuestions(IEnumerable<QuestionRequestModel> questions)
         {
             var result = new List<Question>();
             

@@ -44,13 +44,13 @@ namespace Polling.Controllers
         
         [HttpPost("poll")]
         [TypeFilter(typeof(AccessTokenNeedAttribute))]
-        public ActionResult<PollModelResponse> Create([FromForm] NewPollModel model)
+        public ActionResult<PollModelResponse> Create([FromForm] PollRequestModel requestModel)
         {
             var user = _userProvider.GetUser(HttpContext.Request);
 
-            var questions = _questionsBuilder.BuildQuestions(model.Questions);
+            var questions = _questionsBuilder.BuildQuestions(requestModel.Questions);
 
-            var poll = new Poll(model.Title, questions, user);
+            var poll = new Poll(requestModel.Title, questions, user);
             
             _unitOfWork.Polls.Add(poll);
 

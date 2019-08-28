@@ -1,12 +1,13 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using Polling.Attributes.Validation;
 
 namespace Polling.RequestModels
 {
-    public class LoginModel
+    public class RegisterRequestModel
     {
         [Required]
-        [UserExists]
+        [UserDoesNotExists]
         public string Login { get; set; }
  
         [Required]

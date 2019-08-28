@@ -5,6 +5,6 @@ namespace Polling.Builders
 {
     public interface IUserBuilder
     {
-        User BuildFrom(RegisterModel registerModel);
+        User BuildFrom(RegisterRequestModel registerRequestModel);
     }
 }

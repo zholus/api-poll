@@ -6,6 +6,6 @@ namespace Polling.Builders
 {
     public interface IQuestionsBuilder
     {
-        IEnumerable<Question> BuildQuestions(IEnumerable<NewQuestion> questions);
+        IEnumerable<Question> BuildQuestions(IEnumerable<QuestionRequestModel> questions);
     }
 }

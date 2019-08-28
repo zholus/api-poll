@@ -5,6 +5,6 @@ namespace Polling.Builders
 {
     public interface IQuestionBuilder
     {
-        Question BuildQuestion(NewQuestion question);
+        Question BuildQuestion(QuestionRequestModel questionRequestModel);
     }
 }

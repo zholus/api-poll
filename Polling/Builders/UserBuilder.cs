@@ -13,9 +13,9 @@ namespace Polling.Builders
             _passwordHasher = passwordHasher;
         }
 
-        public User BuildFrom(RegisterModel registerModel)
+        public User BuildFrom(RegisterRequestModel registerRequestModel)
         {
-            return new User(registerModel.Login, _passwordHasher.HashPassword(registerModel.Password));
+            return new User(registerRequestModel.Login, _passwordHasher.HashPassword(registerRequestModel.Password));
         }
     }
 }
