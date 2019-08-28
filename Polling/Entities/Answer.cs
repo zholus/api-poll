@@ -5,9 +5,9 @@ namespace Polling.Entities
     public class Answer
     {
         public int Id { get; set; }
-        public Poll Poll { get; set; }
-        public Question Question { get; set; }
-        public string Ip { get; set; }
+        public virtual Poll Poll { get; set; }
+        public virtual Question Question { get; set; }
+        public virtual string Ip { get; set; }
 
         public Answer()
         {

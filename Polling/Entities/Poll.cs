@@ -7,10 +7,10 @@ namespace Polling.Entities
     public class Poll
     {
         public int Id { get; set; }
-        public string Title { get; set; }
-        public IEnumerable<Question> Questions { get; set; }
+        public virtual string Title { get; set; }
+        public virtual IEnumerable<Question> Questions { get; set; }
         
-        public User User { get; set; }
+        public virtual User User { get; set; }
 
         public Poll()
         {

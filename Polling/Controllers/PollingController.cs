@@ -10,7 +10,6 @@ using Polling.ResponseModels;
 namespace Polling.Controllers
 {
     [ApiController]
-    [TypeFilter(typeof(AccessTokenNeedAttribute))]
     public class PollingController : ControllerBase
     {
         private readonly IUserProvider _userProvider;
@@ -29,8 +28,22 @@ namespace Polling.Controllers
             _questionsBuilder = questionsBuilder;
             _pollModelResponseBuilder = pollModelResponseBuilder;
         }
+        
+        [HttpGet("poll/{pollId}")]
+        public ActionResult<PollModelResponse> Get(int pollId)
+        {
+            var poll = _unitOfWork.Polls.Get(pollId);
 
-        [HttpPost("polling")]
+            if (poll == null)
+            {
+                return NotFound("Poll not found");
+            }
+
+            return _pollModelResponseBuilder.Build(poll);
+        }
+        
+        [HttpPost("poll")]
+        [TypeFilter(typeof(AccessTokenNeedAttribute))]
         public ActionResult<PollModelResponse> Create([FromForm] NewPollModel model)
         {
             var user = _userProvider.GetUser(HttpContext.Request);

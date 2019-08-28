@@ -15,5 +15,10 @@ namespace Polling.Repositories
         {
             return Context.Polls.FirstOrDefault(poll => poll.User.Equals(user) && poll.Title.Equals(title));
         }
+
+        public Poll FF(int pollId)
+        {
+            return Context.Polls.FirstOrDefault(poll => poll.Id == pollId);
+        }
     }
 }
