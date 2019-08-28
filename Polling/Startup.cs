@@ -31,7 +31,7 @@ namespace Polling
             {
                 options.UseLazyLoadingProxies();
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
-            }, ServiceLifetime.Transient);
+            });
 
             services.AddScoped<IDbConnectionStatusChecker, DbConnectionStatusChecker>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
