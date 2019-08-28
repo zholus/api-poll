@@ -7,12 +7,14 @@ namespace Polling.Db.UoW
         private readonly ApplicationDbContext _dbContext;
 
         public IUserRepository Users { get; }
+        public IPollRepository Polls { get; }
 
         public UnitOfWork(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
             
             Users = new UserRepository(dbContext);
+            Polls = new PollRepository(dbContext);
         }
 
         public int Commit()

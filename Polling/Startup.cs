@@ -39,6 +39,11 @@ namespace Polling
             services.AddScoped<IPasswordHasher, PasswordHasher>();
             services.AddScoped<ITokenGenerator, TokenGenerator>();
             services.AddScoped<IUserProvider, UserProvider>();
+            services.AddScoped<IQuestionBuilder, QuestionBuilder>();
+            services.AddScoped<IQuestionsBuilder, QuestionsBuilder>();
+            services.AddScoped<IPollModelResponseBuilder, PollModelResponseBuilder>();
+            services.AddScoped<IQuestionModelResponseBuilder, QuestionModelResponseBuilder>();
+            services.AddScoped<IQuestionsModelResponseBuilder, QuestionsModelResponseBuilder>();
             
             services
                 .AddMvc(options => options.Conventions.Insert(0, new ModeRouteConvention()))
@@ -48,6 +53,8 @@ namespace Polling
             {
                 c.SwaggerDoc("v1", new Info { Title = "Polling API documentation", Version = "v1" });
             });
+
+            services.AddHttpContextAccessor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
