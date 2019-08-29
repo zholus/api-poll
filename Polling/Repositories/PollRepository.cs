@@ -16,9 +16,9 @@ namespace Polling.Repositories
             return Context.Polls.FirstOrDefault(poll => poll.User.Equals(user) && poll.Title.Equals(title));
         }
 
-        public Poll FF(int pollId)
+        public Poll FindByUserAndId(User user, int pollId)
         {
-            return Context.Polls.FirstOrDefault(poll => poll.Id == pollId);
+            return Context.Polls.FirstOrDefault(poll => poll.Id == pollId && poll.User == user);
         }
     }
 }

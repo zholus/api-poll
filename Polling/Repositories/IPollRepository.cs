@@ -5,6 +5,6 @@ namespace Polling.Repositories
     public interface IPollRepository : IRepository<Poll>
     {
         Poll FindByUserAndTitle(User user, string title);
-        Poll FF(int pollId);
+        Poll FindByUserAndId(User user, int pollId);
     }
 }

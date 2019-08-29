@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite.Internal.UrlActions;
 using Polling.Attributes.Filters;
 using Polling.Builders;
 using Polling.Db.UoW;
@@ -59,6 +60,30 @@ namespace Polling.Controllers
             poll = _unitOfWork.Polls.FindByUserAndTitle(user, poll.Title);
 
             return _pollModelResponseBuilder.Build(poll);
+        }
+
+        [HttpDelete("poll/{pollId}")]
+        [TypeFilter(typeof(AccessTokenNeedAttribute))]
+        public ActionResult<object> Delete(int pollId)
+        {
+            var poll = _unitOfWork.Polls.Get(pollId);
+
+            if (poll == null)
+            {
+                return NotFound(new { Message = "Poll not found" });
+            }
+         
+            var user = _userProvider.GetUser(HttpContext.Request);
+
+            if (!user.Equals(poll.User))
+            {
+                return StatusCode(403, new { Message = "Not your poll" });
+            }
+            
+            _unitOfWork.Polls.Remove(poll);
+            _unitOfWork.Commit();
+
+            return new { Message = "Poll has been deleted", PollId = poll.Id };
         }
     }
 }

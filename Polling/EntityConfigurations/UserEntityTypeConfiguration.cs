@@ -13,6 +13,11 @@ namespace Polling.EntityConfigurations
             builder.Property(user => user.Password);
             builder.Property(user => user.AccessToken);
 
+            builder
+                .HasMany(user => user.Polls)
+                .WithOne(poll => poll.User)
+                .OnDelete(DeleteBehavior.Cascade);;
+            
             builder.HasIndex(user => user.Login).IsUnique();
             builder.HasIndex(user => user.AccessToken).IsUnique();
         }

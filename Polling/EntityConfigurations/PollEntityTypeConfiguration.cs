@@ -13,8 +13,9 @@ namespace Polling.EntityConfigurations
             builder.Property(poll => poll.Title).IsRequired();
 
             builder
-                .HasOne(poll => poll.User)
-                .WithMany(user => user.Polls);
+                .HasMany(poll => poll.Questions)
+                .WithOne(question => question.Poll)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasIndex("UserId", "Title").IsUnique();
         }

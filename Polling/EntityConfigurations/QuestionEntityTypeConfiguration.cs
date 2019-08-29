@@ -11,11 +11,12 @@ namespace Polling.EntityConfigurations
             builder.HasKey(question => question.Id);
 
             builder.Property(question => question.Title).IsRequired();
-
-            builder
-                .HasOne(question => question.Poll)
-                .WithMany(poll => poll.Questions);
                 
+            builder
+                .HasMany(question => question.Answers)
+                .WithOne(answer => answer.Question)
+                .OnDelete(DeleteBehavior.Cascade);;
+            
             builder.HasIndex("Title", "PollId").IsUnique();
         }
     }

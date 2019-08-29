@@ -12,10 +12,6 @@ namespace Polling.EntityConfigurations
 
             builder.Property(answer => answer.Ip).IsRequired();
 
-            builder
-                .HasOne(answer => answer.Question)
-                .WithMany(question => question.Answers);
-
             builder.HasIndex("Ip", "PollId").IsUnique();
         }
     }
