@@ -17,6 +17,11 @@ namespace Polling.EntityConfigurations
                 .WithOne(question => question.Poll)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            builder
+                .HasMany(poll => poll.Answers)
+                .WithOne(answer => answer.Poll)
+                .OnDelete(DeleteBehavior.Cascade);
+
             builder.HasIndex("UserId", "Title").IsUnique();
         }
     }

@@ -9,6 +9,7 @@ namespace Polling.Entities
         public int Id { get; set; }
         public virtual string Title { get; set; }
         public virtual IEnumerable<Question> Questions { get; set; }
+        public virtual IEnumerable<Answer> Answers { get; set; }
         
         public virtual User User { get; set; }
 

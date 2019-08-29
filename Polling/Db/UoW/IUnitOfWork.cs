@@ -7,6 +7,7 @@ namespace Polling.Db.UoW
     {
         IUserRepository Users { get; }
         IPollRepository Polls { get; }
+        IAnswerRepository Answers { get; }
         int Commit();
     }
 }

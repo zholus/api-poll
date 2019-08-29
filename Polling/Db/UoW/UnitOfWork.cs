@@ -8,6 +8,7 @@ namespace Polling.Db.UoW
 
         public IUserRepository Users { get; }
         public IPollRepository Polls { get; }
+        public IAnswerRepository Answers { get; }
 
         public UnitOfWork(ApplicationDbContext dbContext)
         {
@@ -15,6 +16,7 @@ namespace Polling.Db.UoW
             
             Users = new UserRepository(dbContext);
             Polls = new PollRepository(dbContext);
+            Answers = new AnswerRepository(dbContext);
         }
 
         public int Commit()

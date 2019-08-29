@@ -36,6 +36,7 @@ namespace Polling
             services.AddScoped<IDbConnectionStatusChecker, DbConnectionStatusChecker>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IAnswerRepository, AnswerRepository>();
             services.AddScoped<IUserBuilder, UserBuilder>();
             services.AddScoped<IPasswordHasher, PasswordHasher>();
             services.AddScoped<ITokenGenerator, TokenGenerator>();
