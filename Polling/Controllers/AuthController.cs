@@ -43,7 +43,7 @@ namespace Polling.Controllers
                 return Ok(new {user.AccessToken});
             }
             
-            return Unauthorized(new {Error = "Please provider correct credentials"});
+            return Unauthorized(new {Message = "Please provider correct credentials"});
         }
 
         [HttpPost("register")]

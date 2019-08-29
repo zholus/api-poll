@@ -37,7 +37,7 @@ namespace Polling.Controllers
 
             if (poll == null)
             {
-                return NotFound("Poll not found");
+                return NotFound(new {Message = "Poll not found"});
             }
 
             return _pollModelResponseBuilder.Build(poll);
